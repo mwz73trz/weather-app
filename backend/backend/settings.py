@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d7q8(r9!m+(r4&so2q3j&qp&!@!dx4jt5f5@i4+6*a^((d57f('
+SECRET_KEY = 'django-insecure-4v%dxh38o5n@lkwd2fb73p%56%5zl%9^kw5u4ei^l)+k-x0pw*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,16 +25,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'weather_app',
     'rest_framework',
     'corsheaders',
-    'jwt_auth',
-    'weather_app',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -117,19 +116,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
-
-JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'jwt_auth.utils.my_jwt_response_handler'
-}
-
-CORS_ORIGIN_WHITELIST = ['https://localhost:3000','http://localhost:3000']
+CORS_ALLOW_ALL_ORIGINS = True

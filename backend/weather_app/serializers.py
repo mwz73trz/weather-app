@@ -1,15 +1,7 @@
-from rest_framework.serializers import ModelSerializer, StringRelatedField
-from weather_app.models import AddressList, Address
+from rest_framework import serializers
+from .models import Address
 
-class AddressListSerializer(ModelSerializer):
-    class Meta:
-        model = AddressList
-        fields = ['id', 'name', 'user', 'addresses']
-        depth = 1
-
-    user = StringRelatedField()
-
-class AddressSerializer(ModelSerializer):
+class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = '__all__'
+        fields = ['id', 'name', 'street', 'city', 'state', 'zipcode']
