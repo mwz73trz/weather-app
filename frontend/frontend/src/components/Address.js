@@ -15,6 +15,7 @@ class Address extends Component {
             <CardText>{ zipcode }</CardText>
           </CardBody>
         </Card>
+        <h3><a href={`/weather-app/weather/${zipcode}`}>Get Current Weather</a></h3>
       </div>
     )
   }

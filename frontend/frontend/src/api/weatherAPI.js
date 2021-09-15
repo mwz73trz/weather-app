@@ -13,7 +13,23 @@ const fetchAddressById = async (addressId) => {
   return data
 }
 
+const fetchWeather = async (zipcode) => {
+  try {
+    let response = await fetch(`${BASE_URL}/weather/${zipcode}`, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    let data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error Fetching Weather!')
+  }
+}
+
 export {
   fetchAddresses,
   fetchAddressById,
+  fetchWeather
 }
